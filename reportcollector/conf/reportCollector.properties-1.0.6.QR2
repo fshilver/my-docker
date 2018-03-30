@@ -1,0 +1,19 @@
+### Application Information
+app.name=reportCollector
+app.version=1.0.6.QR2
+
+
+### File directory
+
+## vod AD log directory
+first.file.dir=/DATA/vod/ReportCollector.log
+
+## channel AD log directory
+second.file.dir=/DATA/channel/ReportCollector.log
+
+## menu AD log directory(AD)
+third.file.dir=/DATA/UI/ReportCollector.log
+
+## Inventory Type config
+## use to validate parameter
+validation.inventoryType=Vod,Catchup,Channel,UI

@@ -1,0 +1,98 @@
+appName=reportCollector
+version=%X{version}
+
+##########################################################
+## >>> classpath:META-INF/log4j.properties                    
+## file location config : web.xml > log4jConfigLocation ##
+##########################################################
+
+
+##---------------------------------------------------------------------
+## for Developer
+##---------------------------------------------------------------------
+#log4j.rootLogger=DEBUG, DR, ERROR, WARNS, stdout
+#log4j.logger.com.castis=DEBUG
+#logHomePath=${catalina.home}/logs
+##---------------------------------------------------------------------
+## for Release
+##---------------------------------------------------------------------
+log4j.rootLogger=INFO, file, DR, ERROR, WARNS
+log4j.logger.com.castis=INFO
+logHomePath=/castis/log/reportcollector_log
+##---------------------------------------------------------------------
+## sql log
+##---------------------------------------------------------------------
+#log4j.logger.org.hibernate=DEBUG
+#log4j.logger.org.hibernate.SQL=trace
+#log4j.logger.org.hibernate.type=trace
+#
+#log4j.logger.com.ibatis=DEBUG 
+#log4j.logger.com.ibatis.common.jdbc.SimpleDataSource=INFO 
+#log4j.logger.com.ibatis.common.jdbc.ScriptRunner=INFO 
+#log4j.logger.com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate=INFO 
+#log4j.logger.java.sql.Connection=INFO 
+#log4j.logger.java.sql.Statement=INFO 
+#log4j.logger.java.sql.PreparedStatement=INFO 
+#log4j.logger.java.sql.ResultSet=INFO
+##---------------------------------------------------------------------
+
+log4j.logger.org.springframework=INFO
+
+## log4j config detail info(true/false)
+log4j.debug=false
+#logPattern=${appName},${version},%d{yyyy-MM-dd},%d{HH:mm:ss.SSS},%p,%F,[%t]%M(%L),"%m"%n
+#logPattern=${appName},${version},%d{yyyy-MM-dd},%d{HH:mm:ss.SSS},%p,%F:%L(%M),%t,"%m"%n
+logPattern=${appName},${version},%d{yyyy-MM-dd},%d{HH:mm:ss.SSS},%p,%t,"%m"%n
+##---------------------------------------------------------------------
+## %m - your log message                                               
+## %x - Nested Diagnostic Context (NDC) (you supply it)        
+##        %d{HH:mm:ss,SSS}, %d{dd MMM yyyy HH:mm:ss,SSS} and so on       
+## %L - Java source line number                                             
+## %M - Java method name    
+##-----------------------------------------------------------------------
+#log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+#log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+##----------------------------
+## reportCollector file write log setup 
+##----------------------------
+logPattern_report=%m%n
+log4j.logger.com.castis.common.logger.TheWatchLogger=INFO, watchReportRollingFileAppender
+log4j.additivity.com.castis.common.logger.TheWatchLogger=false
+log4j.appender.watchReportRollingFileAppender=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.watchReportRollingFileAppender.DatePattern='.'yyyy-MM-dd_HH-mm
+log4j.appender.watchReportRollingFileAppender.layout=org.apache.log4j.PatternLayout
+log4j.appender.watchReportRollingFileAppender.layout.ConversionPattern=${logPattern_report}
+log4j.appender.watchReportRollingFileAppender.UseMonthFolder=true
+log4j.appender.watchReportRollingFileAppender.encoding=utf-8
+log4j.appender.watchReportRollingFileAppender.File=/DATA/report/vod/vod-report.log
+
+log4j.logger.com.castis.common.logger.TheErrorLogger=INFO, errorReportRollingFileAppender
+log4j.additivity.com.castis.common.logger.TheErrorLogger=false
+log4j.appender.errorReportRollingFileAppender=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.errorReportRollingFileAppender.DatePattern='.'yyyy-MM-dd_HH-mm
+log4j.appender.errorReportRollingFileAppender.layout=org.apache.log4j.PatternLayout
+log4j.appender.errorReportRollingFileAppender.layout.ConversionPattern=${logPattern_report}
+log4j.appender.errorReportRollingFileAppender.UseMonthFolder=true
+log4j.appender.errorReportRollingFileAppender.encoding=utf-8
+log4j.appender.errorReportRollingFileAppender.File=/DATA/report/channel/channel-report.log
+
+log4j.logger.com.castis.common.logger.TheMenuLogger=INFO, menuReportRollingFileAppender
+log4j.additivity.com.castis.common.logger.TheMenuLogger=false
+log4j.appender.menuReportRollingFileAppender=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.menuReportRollingFileAppender.DatePattern='.'yyyy-MM-dd_HH-mm
+log4j.appender.menuReportRollingFileAppender.layout=org.apache.log4j.PatternLayout
+log4j.appender.menuReportRollingFileAppender.layout.ConversionPattern=${logPattern_report}
+log4j.appender.menuReportRollingFileAppender.UseMonthFolder=true
+log4j.appender.menuReportRollingFileAppender.encoding=utf-8
+log4j.appender.menuReportRollingFileAppender.File=/DATA/report/ui/ui-report.log
+
+##---------------------------------
+## INFO file logging
+##---------------------------------
+log4j.appender.DR.Threshold=INFO
+log4j.appender.DR=org.apache.log4j.DailyRollingFileAppender
+log4j.appender.DR.File=${logHomePath}/reportcollector.log
+log4j.appender.DR.Append=true
+log4j.appender.DR.DatePattern='.'yyyy-MM-dd_HH
+log4j.appender.DR.layout=org.apache.log4j.PatternLayout
+log4j.appender.DR.layout.ConversionPattern=${logPattern}

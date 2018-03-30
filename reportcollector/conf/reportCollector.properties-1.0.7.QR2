@@ -1,0 +1,7 @@
+### Application Information
+#app.name=reportCollector
+#app.version=1.0.7.QR2
+
+## Inventory Type config
+## use to validate parameter
+validation.inventoryType=Vod,Catchup,Channel,UI
