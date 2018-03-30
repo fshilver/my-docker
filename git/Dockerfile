@@ -1,3 +1,5 @@
+# version 2.9.5
+# name git
 FROM centos:6.7
 
 RUN yum install -y openssl-devel zlib-devel gcc perl-ExtUtils-MakeMaker expat-devel gettext-devel curl-devel tar xz
