@@ -1,3 +1,5 @@
+# version 1.1
+# name build-vod-client-sdk
 FROM centos:6.7
 
 RUN yum install -y gcc gcc-c++ make boost boost-devel tbb-devel glibc-devel libuuid-devel openssl-devel vim file strace zip unzip tree;yum -y clean all

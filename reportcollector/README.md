@@ -1,9 +1,15 @@
-# How to run with docker
+# Dockerfile for Report Collector
 
 ```bash
-# Docker command to build and run
-~$ docker build --build-arg VERSION=1.0.7.QR2 --tag reportcollector:1.0.7.QR2 .
-~$ docker run -itd --rm --name rc -p 18080:8080 reportcollector:1.0.7.QR2
+# build Docker image
+~$ ./build.sh
+
+# run Docker container
+~$ docker run -itd --rm --name ${container_name} \
+			-v ${host_conf_dir}:/castis/bin/tomcat/conf/reportCollector \
+			-v ${host_log_dir}:/castis/log/reportCollector_log \
+			-v ${host_data_dir}:/DATA/report \
+			-p ${host_port}:8080 reportcollector:${version}
 ```
 
 ## How to attach running docker container 

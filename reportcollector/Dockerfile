@@ -1,3 +1,5 @@
+# version 1.0.7.QR2
+# name reportcollector
 FROM centos:6.7
 
 ENV REPO 110.35.173.28
